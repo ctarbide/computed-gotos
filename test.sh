@@ -1,15 +1,22 @@
 #!/bin/sh
 set -eux
+
 ./main <prog
 echo
 
-time ./main_switch <prog
+time -p ./main_switch <prog
 echo
 
-time ./main_cgoto <prog
+time -p ./main_cgoto <prog
 echo
 
-time ./main_call <prog
+time -p ./main_call <prog
+echo
+
+time -p ./main_cgotow <prog
+echo
+
+time -p ./main_switchc <prog
 echo
 
 echo all done

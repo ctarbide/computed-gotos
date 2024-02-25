@@ -4,8 +4,12 @@
 /* even with all the hints.. gcc cannot beat computed gotos
  */
 
+/* using 'continue' instead of 'break' is faster (!?!), that's disturbing,
+ * decades of optimization and this couldn't be abstracted?
+ */
+
 int
-interp_switch(unsigned char *code, int initval)
+interp_switchc(unsigned char *code, int initval)
 {
 	int pc = 0;
 	int val = initval;
@@ -18,31 +22,31 @@ interp_switch(unsigned char *code, int initval)
 
 		case OP_INC:
 			val++;
-			break;
+			continue;
 
 		case OP_DEC:
 			val--;
-			break;
+			continue;
 
 		case OP_MUL2:
 			val *= 2;
-			break;
+			continue;
 
 		case OP_DIV2:
 			val /= 2;
-			break;
+			continue;
 
 		case OP_ADD7:
 			val += 7;
-			break;
+			continue;
 
 		case OP_NEG:
 			val = -val;
-			break;
+			continue;
 
 		case OP__PAD:
 			/* no-op, shouldnt happen */
-			break;
+			continue;
 		}
 	}
 }

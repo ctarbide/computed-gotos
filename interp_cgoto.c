@@ -1,7 +1,7 @@
 
 #include "interp.h"
 
-#define DISPATCH() goto *dispatch_table[code[pc++]]
+#define DISPATCH() goto *dispatch_table[code[pc++] & OP__MASK]
 
 int
 interp_cgoto(unsigned char *code, int initval)
@@ -10,7 +10,7 @@ interp_cgoto(unsigned char *code, int initval)
 	 */
 	static void *dispatch_table[] = {
 		&&do_halt, &&do_inc, &&do_dec, &&do_mul2,
-		&&do_div2, &&do_add7, &&do_neg
+		&&do_div2, &&do_add7, &&do_neg, &&do_pad
 	};
 	int pc = 0;
 	int val = initval;
@@ -34,5 +34,8 @@ do_add7:
 	DISPATCH();
 do_neg:
 	val = -val;
+	DISPATCH();
+do_pad:
+	/* no-op, shouldnt happen */
 	DISPATCH();
 }

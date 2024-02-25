@@ -37,6 +37,13 @@ do_neg(int val)
 	return - val;
 }
 
+int
+do_pad(int val)
+{
+	/* no-op, shouldnt happen */
+	return val;
+}
+
 static int running;
 
 int
@@ -51,14 +58,14 @@ interp_call(unsigned char *code, int initval)
 {
 	static int (*dispatch_table[])(int) = {
 		&do_halt, &do_inc, &do_dec, &do_mul2,
-		&do_div2, &do_add7, &do_neg
+		&do_div2, &do_add7, &do_neg, &do_pad
 	};
 	int pc = 0;
 	int val = initval;
 	running = 1;
 
 	do {
-		val = dispatch_table[code[pc++]](val);
+		val = dispatch_table[code[pc++] & OP__MASK](val);
 	} while (running);
 
 	return val;
