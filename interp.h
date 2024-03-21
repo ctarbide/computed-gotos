@@ -23,3 +23,4 @@ int interp_cgoto(unsigned char *code, int initval);
 int interp_call(unsigned char *code, int initval);
 int interp_cgotow(unsigned char *code, int initval);
 int interp_switchc(unsigned char *code, int initval);
+int interp_sgoto(unsigned char *code, int initval);

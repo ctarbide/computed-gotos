@@ -19,4 +19,7 @@ echo
 time -p ./main_switchc <prog
 echo
 
+time -p ./main_sgoto <prog
+echo
+
 echo all done

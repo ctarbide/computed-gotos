@@ -1,40 +1,12 @@
-+-zsh:271> ./build.sh
-+ CC=gcc
-+ CFLAGS=-O3 -Wall -Wextra -Werror -Wno-unused-parameter
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -S -o interp_switch.S interp_switch.c
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -S -o interp_cgoto.S interp_cgoto.c
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -S -o interp_call.S interp_call.c
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -S -o interp_cgotow.S interp_cgotow.c
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -S -o interp_switchc.S interp_switchc.c
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -c -o interp_switch.o interp_switch.c
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -c -o interp_cgoto.o interp_cgoto.c
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -c -o interp_call.o interp_call.c
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -c -o interp_cgotow.o interp_cgotow.c
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -c -o interp_switchc.o interp_switchc.c
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -c -o main.o main.c
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -c -DBENCH_SWITCH -o main_switch.o main.c
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -c -DBENCH_CGOTO -o main_cgoto.o main.c
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -c -DBENCH_CALL -o main_call.o main.c
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -c -DBENCH_CGOTOW -o main_cgotow.o main.c
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -c -DBENCH_SWITCHC -o main_switchc.o main.c
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -o main interp_switch.o interp_cgoto.o interp_call.o interp_cgotow.o interp_switchc.o main.o
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -o main_switch interp_switch.o main_switch.o
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -o main_cgoto interp_cgoto.o main_cgoto.o
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -o main_call interp_call.o main_call.o
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -o main_cgotow interp_cgotow.o main_cgotow.o
-+ gcc -O3 -Wall -Wextra -Werror -Wno-unused-parameter -o main_switchc interp_switchc.o main_switchc.o
-+ echo all done
-all done
-+-zsh:271> ./test.sh
 + ./main
-131 131 131 131 131
+131 131 131 131 131 131
 0
 + echo
 
 + time -p ./main_switch
 96
 real 1.59
-user 1.58
+user 1.59
 sys 0.00
 + echo
 
@@ -63,6 +35,13 @@ sys 0.00
 96
 real 1.18
 user 1.18
+sys 0.00
++ echo
+
++ time -p ./main_sgoto
+96
+real 1.65
+user 1.65
 sys 0.00
 + echo
 

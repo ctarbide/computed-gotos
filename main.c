@@ -83,13 +83,20 @@ main(int argc, const char **argv)
 		check += (size_t)interp_switchc(pbuf, 42);
 	}
 
+#elif defined(BENCH_SGOTO)
+
+	for (int i = 0; i <= LOOP_COUNT; ++i) {
+		check += (size_t)interp_sgoto(pbuf, 42);
+	}
+
 #else
 	int v1 = interp_switch(pbuf, 42);
 	int v2 = interp_cgoto(pbuf, 42);
 	int v3 = interp_call(pbuf, 42);
 	int v4 = interp_cgotow(pbuf, 42);
 	int v5 = interp_switchc(pbuf, 42);
-	printf("%d %d %d %d %d\n", v1, v2, v3, v4, v5);
+	int v6 = interp_sgoto(pbuf, 42);
+	printf("%d %d %d %d %d %d\n", v1, v2, v3, v4, v5, v6);
 #endif
 	check %= 97;
 	printf("%zu\n", check);

@@ -8,14 +8,14 @@ same license from me on the shell scripts and the added variants.
 The results on a 100-byte randomly generated program:
 
     + ./main
-    131 131 131 131 131
+    131 131 131 131 131 131
     0
     + echo
 
     + time -p ./main_switch
     96
     real 1.59
-    user 1.58
+    user 1.59
     sys 0.00
     + echo
 
@@ -44,6 +44,13 @@ The results on a 100-byte randomly generated program:
     96
     real 1.18
     user 1.18
+    sys 0.00
+    + echo
+
+    + time -p ./main_sgoto
+    96
+    real 1.65
+    user 1.65
     sys 0.00
     + echo
 
